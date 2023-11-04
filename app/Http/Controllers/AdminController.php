@@ -25,17 +25,14 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $fieldCount = Field::count();
-        $adCount = Admin::count();
-        $custCount = Customer::count();
-        $timeCount = Time::count();
-        $ordCount = Order::count();
+        $unConf = Order::where('status', '=', 0)->count();
+        $confirm = Order::where('status', '=', 1)->count();
+        $denied = Order::where('status', '=', 2)->count();
+
         return view('dashboard.index', [
-            'fieldCount' => $fieldCount,
-            'custCount' => $custCount,
-            'adCount' => $adCount,
-            'ordCount' => $ordCount,
-            'timeCount' => $timeCount
+            'unConf' => $unConf,
+            'confirm' => $confirm,
+            'denied' => $denied,
         ]);
     }
 

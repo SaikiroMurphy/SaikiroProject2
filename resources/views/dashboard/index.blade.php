@@ -84,38 +84,21 @@
             <ul class="list-group list-group-flush border-top border-success border-4 my-4">
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Số sân</div>
-                        Tổng số sân
+                        <div class="fw-bold">Số lượng đơn chưa xác nhận</div>
                     </div>
-                    <span class="fs-1">{{ $fieldCount }}</span>
+                    <span class="fs-1">{{ $unConf }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Khung giờ</div>
-                        Số lượng khung giờ
+                        <div class="fw-bold">Số lượng đơn đã xác nhận</div>
                     </div>
-                    <span class="fs-1">{{ $timeCount }}</span>
+                    <span class="fs-1">{{ $confirm }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Người dùng</div>
-                        Số lượng người dùng đã đăng ký
+                        <div class="fw-bold">Số lượng đơn đã từ chối</div>
                     </div>
-                    <span class="fs-1">{{ $custCount }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Nhân viên</div>
-                        Số lượng nhân viên
-                    </div>
-                    <span class="fs-1">{{ $adCount }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Đặt sân</div>
-                        Số lượng đơn đặt sân
-                    </div>
-                    <span class="fs-1">{{ $ordCount }}</span>
+                    <span class="fs-1">{{ $denied }}</span>
                 </li>
             </ul>
         </div>

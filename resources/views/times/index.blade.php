@@ -69,7 +69,7 @@
             </a>
             <ul class="dropdown-menu text-small shadow">
                 <li>
-                    <a class="dropdown-item" href="#" >Đăng xuất</a>
+                    <a class="dropdown-item" href="{{ route('dashboard.logout') }}" >Đăng xuất</a>
                 </li>
             </ul>
         </div>
