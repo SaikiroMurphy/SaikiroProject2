@@ -157,6 +157,7 @@
                                 <th scope="col">Thời gian</th>
                                 <th scope="col">Khách hàng</th>
                                 <th scope="col">Người quản lý</th>
+                                <th scope="col">Giá</th>
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col">Trạng thái</th>
                             </tr>
@@ -170,6 +171,7 @@
                                         {{ $item -> times -> timeStart }} - {{ $item -> times -> timeEnd }}</td>
                                     <td>{{ $item -> customers -> name }}</td>
                                     <td>{{ $item -> admins -> name }}</td>
+                                    <td>{{ number_format($item -> fields -> types -> price, 0, '.', ',') }}đ</td>
                                     <td>{{ $item -> orders -> order_note }}</td>
                                     <td>@if(($item -> orders -> status) == 0)
                                             Chưa xác nhận

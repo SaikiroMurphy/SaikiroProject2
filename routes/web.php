@@ -36,11 +36,13 @@ Route::middleware('checkLogin')->prefix('/customers')->group(function () {
     Route::post('/orders/store', [\App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
     Route::post('/details/store', [\App\Http\Controllers\OrderController::class, 'store_details'])->name('details.store');
     Route::get('/orders/getFields/{id}', [\App\Http\Controllers\OrderController::class, 'getFields']);
-//    Route::get('/orders/getDates/', [\App\Http\Controllers\OrderController::class, 'getDates']);
+    Route::get('/orders/getPrices/{id}', [\App\Http\Controllers\OrderController::class, 'getPrices']);
+    Route::get('/orders/checkTime/', [\App\Http\Controllers\OrderController::class, 'checkTime']);
+
+
+    Route::get('/orders/getImg/{id}', [\App\Http\Controllers\OrderController::class, 'getImg']);
     Route::get('/orders/getTimes2Day/', [\App\Http\Controllers\OrderController::class, 'getTimes2Day']);
     Route::get('/orders/getTimesNextDay/', [\App\Http\Controllers\OrderController::class, 'getTimesNextDay']);
-
-
     Route::get('/history', [\App\Http\Controllers\CustomerController::class, 'history'])->name('customers.history');
     Route::delete('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
 });

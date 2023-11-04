@@ -38,7 +38,7 @@ class OrderController extends Controller
 
     public function order() {
         $types = FieldType::all();
-//        $fields = Field::all();
+        $fields = Field::all();
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
 //        $timenow = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i:s');
 //        $times = Time::where('timeStart', '>', $timenow)->get();
@@ -47,7 +47,7 @@ class OrderController extends Controller
         return view('customers.orders', [
 //            'times' => $times,
             'types' => $types,
-//            'fields' => $fields,
+            'fields' => $fields,
             'datenow' => $datenow
         ]);
     }
@@ -160,10 +160,11 @@ class OrderController extends Controller
         return response()->json($fields);
     }
 
-//    public function getDates() {
-//        $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('d/m/y');
-//        return response()->json($datenow);
-//    }
+    public function getImg(\Illuminate\Http\Request $request) {
+        $id = $request -> id;
+        $field = Field::where('id', '=', $id)->get();
+        return response()->json($field);
+    }
 
     public function getTimes2Day() {
         $timenow = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i:s');
@@ -174,5 +175,16 @@ class OrderController extends Controller
     public function getTimesNextDay() {
         $times = Time::all();
         return response()->json($times);
+    }
+
+    public function getPrices(\Illuminate\Http\Request $request) {
+        $id = $request -> id;
+        $prices = FieldType::where('id', '=', $id)->get();
+        return response()->json($prices);
+    }
+
+    public function checkTime(\Illuminate\Http\Request $request) {
+        $details = OrderDetail::all();
+        return response()->json($details);
     }
 }

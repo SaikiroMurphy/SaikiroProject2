@@ -5,8 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+        rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/dfb2727f7d.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../../resources/Images/ava-web.png">
+    <title>Đăng nhập - SugmaStadium</title>
     <style>
         #intro {
             background-image: url("https://m.media-amazon.com/images/I/61wbDovWcpL.jpg");
@@ -14,7 +23,6 @@
             background-size: cover;
         }
     </style>
-    <title>Login function test</title>
 </head>
 <body>
 <div id="intro" class="bg-image">

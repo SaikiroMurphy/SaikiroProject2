@@ -72,14 +72,22 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request)
     {
-        $password = bcrypt($request->password);
-        $array = [];
-        $array = Arr::add($array, 'email', $request->email);
-        $array = Arr::add($array, 'phonenumber', $request->phonenumber);
-        $array = Arr::add($array, 'name', $request->name);
-        $array = Arr::add($array, 'password', $password);
-        Admin::create($array);
-        return Redirect::route('admin.index');
+        $admins = Admin::all();
+        foreach ($admins as $item) {
+//            dd($request->email == $item->email);
+            if ($request->email == $item->email) {
+                return Redirect::back();
+            } else {
+                $password = bcrypt($request->password);
+                $array = [];
+                $array = Arr::add($array, 'email', $request->email);
+                $array = Arr::add($array, 'phonenumber', $request->phonenumber);
+                $array = Arr::add($array, 'name', $request->name);
+                $array = Arr::add($array, 'password', $password);
+                Admin::create($array);
+                return Redirect::route('admin.index');
+            }
+        }
     }
 
     /**

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Stmt\Return_;
+use function Laravel\Prompts\alert;
 
 class CustomerController extends Controller
 {
@@ -39,10 +40,11 @@ class CustomerController extends Controller
         return view('customers.register');
     }
 
-    public function history() {
+    public function history()
+    {
         if (Session::exists('customers')) {
             $customers = Session::get('customers')['id'];
-            $details = OrderDetail::where('customer_id', '=', $customers) -> get();
+            $details = OrderDetail::where('customer_id', '=', $customers)->get();
         }
         return view('customers.history', [
             'details' => $details
@@ -52,26 +54,34 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomerRequest  $request
+     * @param \App\Http\Requests\StoreCustomerRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCustomerRequest $request)
     {
-        $password = bcrypt($request->password);
-        $array = [];
-        $array = Arr::add($array, 'email', $request->email);
-        $array = Arr::add($array, 'address', $request->address);
-        $array = Arr::add($array, 'phonenumber', $request->phonenumber);
-        $array = Arr::add($array, 'name', $request->name);
-        $array = Arr::add($array, 'password', $password);
-        Customer::create($array);
-        return Redirect::route('customers.login');
+        $customers = Customer::all();
+        foreach ($customers as $item) {
+//            dd($request->email == $item->email);
+            if ($request->email == $item->email) {
+                return Redirect::back();
+            } else {
+                $password = bcrypt($request->password);
+                $array = [];
+                $array = Arr::add($array, 'email', $request->email);
+                $array = Arr::add($array, 'address', $request->address);
+                $array = Arr::add($array, 'phonenumber', $request->phonenumber);
+                $array = Arr::add($array, 'name', $request->name);
+                $array = Arr::add($array, 'password', $password);
+                Customer::create($array);
+                return Redirect::route('customers.login');
+            }
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customers
+     * @param \App\Models\Customer $customers
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customers)
@@ -82,7 +92,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customer  $customers
+     * @param \App\Models\Customer $customers
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customers)
@@ -95,8 +105,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
-     * @param  \App\Models\Customer  $customers
+     * @param \App\Http\Requests\UpdateCustomerRequest $request
+     * @param \App\Models\Customer $customers
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCustomerRequest $request, Customer $customers)
@@ -115,7 +125,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customers
+     * @param \App\Models\Customer $customers
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customers, \Illuminate\Http\Request $request)
@@ -126,13 +136,16 @@ class CustomerController extends Controller
         return Redirect::route('dashboard.customers');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('customers.login');
     }
-    public function loginProcess(\Illuminate\Http\Request $request) {
+
+    public function loginProcess(\Illuminate\Http\Request $request)
+    {
         $account = $request->except('_token');
         // Xác thực đăng nhập
-        if(Auth::guard('customers')->attempt($account)){
+        if (Auth::guard('customers')->attempt($account)) {
 //        dd($check);
             // Cho login
             // Lấy thông tin customers

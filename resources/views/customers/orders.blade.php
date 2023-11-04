@@ -158,21 +158,26 @@
                         <div class="row py-2 me-5" style="background-color: white">
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingName{{ Session::get('customers')['id'] }}" placeholder="Họ tên"
-                                           value="{{ Session::get('customers')['name'] }}" disabled required>
-                                    <label for="floatingName{{ Session::get('customers')['id'] }}" class="form-label">Họ tên</label>
+                                    <input type="text" class="form-control" id="floatingName" placeholder="Họ tên"
+                                           value="{{ Session::get('customers')['name'] }}" readonly>
+                                    <label for="floatingName" class="form-label">Họ tên</label>
+                                    <div class="invalid-feedback">Ô này không được để trống</div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingEmail" placeholder="Email"
+                                           value="{{ Session::get('customers')['email'] }}" readonly>
+                                    <label for="floatingEmail" class="form-label">Email</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingNumber"
-                                           placeholder="Số điện thoại" value="{{ Session::get('customers')['phonenumber'] }}" disabled required>
+                                           placeholder="Số điện thoại" value="{{ Session::get('customers')['phonenumber'] }}" readonly>
                                     <label for="floatingNumber" class="form-label">Số điện thoại</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input placeholder="Select date" class="form-control" type="date" name="date" id="date" min="{{ $datenow }}" placeholder="Ngày đặt sân" required>
                                     <label for="Date" class="form-label">Ngày đặt sân</label>
-                                    <div id="unvaliDATE"></div>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating mb-3">
@@ -181,12 +186,17 @@
                                     <label for="TimeEnd">Khung giờ</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
+                                <div class="form-floating my-3">
+                                    <input class="form-control" type="text" name="order_note" id="order_note">
+                                    <label for="order_note" class="form-label">Ghi chú</label>
+                                </div>
+                                <div class="form-floating mb-3" id="price">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="types" required>
                                         <option value="" selected>Chọn loại sân</option>
-
                                     @foreach($types as $items)
                                             <option id="type{{$items -> id}}"
                                                     value="{{ $items -> id }}">{{ $items -> type }}</option>
@@ -195,15 +205,21 @@
                                     <label for="types">Loại sân</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
+{{--                                <div class="form-floating mb-3">--}}
+{{--                                    <select class="form-select" name="fields" id="fields" required>--}}
+{{--                                    </select>--}}
+{{--                                    <label for="fields">Sân</label>--}}
+{{--                                    <div class="invalid-feedback">Ô này không được để trống</div>--}}
+{{--                                </div>--}}
                                 <div class="form-floating mb-3">
                                     <select class="form-select" name="fields" id="fields" required>
                                     </select>
                                     <label for="fields">Sân</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" type="text" name="order_note" id="order_note" required>
-                                    <label for="order_note" class="form-label">Ghi chú</label>
+                                <div id="img"></div>
+{{--                                <img src="{{ asset(\Illuminate\Support\Facades\Storage::url('dashboard/img/').$fields->image) }}" width="100px" height="100px">--}}
+                                <div class="form-floating my-3" id="desc">
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                             </div>
@@ -216,7 +232,7 @@
         {{--End Main--}}
 
         {{--Footer--}}
-        <footer class="d-flex flex-warp justify-content-between align-items-center py-2"
+        <footer class="d-flex flex-warp justify- align-items-center py-2"
                 style="background-color: #05b50b">
             <div class="col-md-4 align-items-center text-white ms-3" style="--bs-text-opacity: .75;">© 2023 SugmaStadium
                 Copyright.
@@ -244,6 +260,11 @@
 <script src="../../resources/js/validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-
+<script>
+    var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>content-between
 </body>
 </html>
