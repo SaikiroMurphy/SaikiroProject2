@@ -135,7 +135,7 @@ $(document).ready(function () {
 
                         $.each(data, function (key, details) {
                             if (field_id == details.field_id){
-                                alert('lo')
+                                alert('Testing');
 
                                 $.each(data, function (key, details) {
                                     if (date == details.orders.date){

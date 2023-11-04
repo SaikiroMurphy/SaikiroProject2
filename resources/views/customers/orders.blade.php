@@ -232,28 +232,21 @@
         {{--End Main--}}
 
         {{--Footer--}}
-        <footer class="d-flex flex-warp justify- align-items-center py-2"
-                style="background-color: #05b50b">
-            <div class="col-md-4 align-items-center text-white ms-3" style="--bs-text-opacity: .75;">© 2023 SugmaStadium
-                Copyright.
-            </div>
+        <footer class="d-flex flex-warp justify-content-between align-items-center py-2" style="background-color: #05b50b">
+            <div class="col-md-4 align-items-center text-white ms-3" style="--bs-text-opacity: .75;">© 2023 SugmaStadium Copyright.</div>
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
                 <li class="ms-3" style="font-size: 25px">
-                    <a href="https://twitter.com" class="text-white" style="--bs-text-opacity: .75;"><i
-                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://twitter.com" class="text-white" style="--bs-text-opacity: .75;"><i class="fa-brands fa-twitter"></i></a>
                 </li>
                 <li class="ms-3" style="font-size: 25px">
-                    <a href="https://www.facebook.com" class="text-white" style="--bs-text-opacity: .75;"><i
-                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.facebook.com" class="text-white" style="--bs-text-opacity: .75;"><i class="fa-brands fa-facebook"></i></a>
                 </li>
                 <li class="ms-3" style="font-size: 25px">
-                    <a href="https://github.com" class="text-white" style="--bs-text-opacity: .75;"><i
-                            class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com" class="text-white" style="--bs-text-opacity: .75;"><i class="fa-brands fa-github"></i></a>
                 </li>
             </ul>
         </footer>
     </div>
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../../resources/js/order.js"></script>
@@ -265,6 +258,6 @@
         var image = document.getElementById('output');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
-</script>content-between
+</script>
 </body>
 </html>
