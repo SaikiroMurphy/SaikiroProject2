@@ -22,7 +22,23 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => ['required', 'unique:customers,email'],
+            'address' => ['required'],
+            'phonenumber' => ['required'],
+            'name' => ['required'],
+            'password' => ['required', 'min:6']
+        ];
+    }
+
+    public function messages() {
+        return [
+            'email.required' => 'Email không được để trống!',
+            'email.unique' => 'Email đã tồn tại!',
+            'address.required' => 'Địa chỉ không được để trống!',
+            'phonenumber.required' => 'Số điện thoại không được để trống!',
+            'name.required' => 'Tên không được để trống!',
+            'password.required' => 'Mật khẩu không được để trống!',
+            'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự!'
         ];
     }
 }

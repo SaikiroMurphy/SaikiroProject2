@@ -30,32 +30,39 @@
         <div class="container text-center">
             <div class="row d-flex align-items-center justify-content-center" style="height: 750px">
                 <div class="col align-self-center">
-                    <form class="needs-validation border border-warning bg-success py-5 px-5 align-self-center"
-                          method="post"
-                          action="{{ route('customers.store') }}" style="color: black" novalidate>
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class=" border border-warning bg-success py-5" method="post" action="{{ route('customers.store') }}" style="color: black" novalidate>
                         <label style="font-size: 50px">SugmaStadium</label><br>
                         @csrf
-                        <div class="col-12">
-                            <p>Email:</p><input class="form-control" type="email" name="email" required><br>
-                            <div class="invalid-feedback">Ô này không được để trống</div>
-                            <p>Địa chỉ:</p><input class="form-control" type="text" name="address" required><br>
-                            <div class="invalid-feedback">Ô này không được để trống</div>
-                            <p>Số điện thoại:</p><input class="form-control" type="text" name="phonenumber" required><br>
-                            <div class="invalid-feedback">Ô này không được để trống</div>
-                            <p>Họ và tên</p><input class="form-control" type="text" name="name" required><br>
-                            <div class="invalid-feedback">Ô này không được để trống</div>
-                            <p>Mật khẩu:</p><input class="form-control" type="password" name="password" required><br>
-                            <div class="invalid-feedback">Ô này không được để trống</div>
+                            <p>Email:</p><input type="email" name="email"><br>
+{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
+                            <p>Địa chỉ:</p><input type="text" name="address"><br>
+{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
+                            <p>Số điện thoại:</p><input type="text" name="phonenumber"><br>
+{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
+                            <p>Họ và tên</p><input type="text" name="name"><br>
+{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
+                            <p>Mật khẩu:</p><input type="password" name="password"><br>
+{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
                             <a href="{{ route('customers.login') }}" class="btn btn-warning mt-3">Quay lại</a>
                             <button class="btn btn-warning mt-3">Đăng ký</button>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="../../resources/js/validate.js"></script>
+{{--<script src="../../resources/js/validate.js"></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
