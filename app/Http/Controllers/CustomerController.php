@@ -43,8 +43,10 @@ class CustomerController extends Controller
     public function history()
     {
         if (Session::exists('customers')) {
+            $details = null;
             $customers = Session::get('customers')['id'];
-            $details = OrderDetail::where('customer_id', '=', $customers)->get();
+            $orders = Order::where('customer_id', '=', $customers)->pluck('id');
+            $details = OrderDetail::whereIn('order_id', $orders)->get();
         }
         return view('customers.history', [
             'details' => $details

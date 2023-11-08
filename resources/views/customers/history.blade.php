@@ -167,9 +167,9 @@
                                 <tr>
                                     <td>{{ $item -> orders -> id }}</td>
                                     <td>{{ $item -> fields -> name }}</td>
-                                    <td>{{ $item -> orders -> date }}<br>
+                                    <td>{{ $item -> date }}<br>
                                         {{ $item -> times -> timeStart }} - {{ $item -> times -> timeEnd }}</td>
-                                    <td>{{ $item -> customers -> name }}</td>
+                                    <td>{{ $item -> orders -> customers -> name }}</td>
 {{--                                    <td>{{ $item -> admins -> name }}</td>--}}
                                     <td>{{ number_format($item -> fields -> types -> price, 0, '.', ',') }}đ</td>
                                     <td>{{ $item -> orders -> order_note }}</td>

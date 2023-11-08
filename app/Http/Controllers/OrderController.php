@@ -78,7 +78,6 @@ class OrderController extends Controller
         $array = Arr::add($array, 'customer_id', $customers);
         $array = Arr::add($array, 'order_note', $request -> order_note);
         $array = Arr::add($array, 'status', 0);
-        $array = Arr::add($array, 'date', $request -> date);
         Order::create($array);
 
         // Đẩy order_details lên database
@@ -87,6 +86,8 @@ class OrderController extends Controller
         $array2 = Arr::add($array2, 'order_id', $orders);
         $array2 = Arr::add($array2, 'field_id', $request -> fields);
         $array2 = Arr::add($array2, 'time_id', $request -> times);
+        $array2 = Arr::add($array2, 'date', $request -> date);
+
         OrderDetail::create($array2);
 
         return Redirect::route('customers.index');
@@ -186,11 +187,11 @@ class OrderController extends Controller
 
     public function checkTime(\Illuminate\Http\Request $request) {
         $field = $request -> field;
-//        $date = $request -> date;
+        $date = $request -> date;
         $time = $request -> time;
         $details = OrderDetail::where('field_id', '=', $field)
             ->where('time_id', '=', $time)
-//            ->where('date')
+            ->where('date', '=', $date)
             ->get();
 //        dd($details);
         return response()->json($details);

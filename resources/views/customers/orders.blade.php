@@ -223,7 +223,7 @@
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-outline-success">Đặt sân</button>
+                            <button type="submit" class="btn btn-outline-success" id="dmm">Đặt sân</button>
                         </div>
                     </form>
                 </div>
@@ -265,9 +265,10 @@
             var time_id = $(this).val();
             var field_id = $('#fields').val();
             var date = $('#date').val();
-            let url = "{{ route('checkTime', ['field' => ":field_id", 'time' => ":time_id"]) }}";
+            let url = "{{ route('checkTime', ['field' => ":field_id", 'time' => ":time_id", 'date' => ":date"]) }}";
             url = url.replace(":field_id", field_id);
             url = url.replace(":time", time_id);
+            url = url.replace(":date", date);
 
             if (time_id) {
                 $.ajax({
@@ -277,10 +278,10 @@
                     {{--dataType: "json",--}}
                     success: function (data) {
                         if (data == '') {
-
+                            $("#dmm").show();
                         } else {
                             alert('Trùng thời gian với tk khác r tk loz.');
-
+                            $("#dmm").hide();
                         }
                     }
                 });
