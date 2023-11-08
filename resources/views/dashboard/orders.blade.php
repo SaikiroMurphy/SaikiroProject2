@@ -78,7 +78,7 @@
         </div>
         <div class="border-top border-success border-4 my-4">
             {{--            Table--}}
-            <table class="table table-success table-striped mt-4" border="1px" cellpadding="0" cellspacing="0" width="100%">
+            <table class="table table-success table-striped mt-4" border="1px" cellpadding="0" cellspacing="0" width="100%" style="font-size: 10pt">
                 <thead>
                 <tr>
                     <th scope="col">ID đơn</th>
@@ -88,6 +88,7 @@
                     <th scope="col">Người quản lý</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Ghi chú</th>
+                    <th scope="col">Hình thức thanh toán</th>
                     <th scope="col">Trạng thái</th>
                 </tr>
                 </thead>
@@ -96,18 +97,27 @@
                         <tr>
                             <td>{{ $item -> orders -> id }}</td>
                             <td>{{ $item -> fields -> name }}</td>
-                            <td>{{ $item -> orders -> date }}<br>
+                            <td>{{ $item -> date }}<br>
                                 {{ $item -> times -> timeStart }} - {{ $item -> times -> timeEnd }}</td>
-                            <td>{{ $item -> customers -> name }}</td>
-                            <td>{{ $item -> admins -> name }}</td>
+                            <td>{{ $item -> orders -> customers -> name }}</td>
+                            <td>{{ $item -> orders -> admins -> name }}</td>
                             <td>{{ number_format($item -> fields -> types -> price, 0, '.', ',') }}đ</td>
                             <td>{{ $item -> orders -> order_note }}</td>
+                            <td>@if(($item -> orders -> payment) == 1)
+                                    COD
+                                @else
+                                    Chuyển khoản
+                                @endif
+                            </td>
                             <td>@if(($item -> orders -> status) == 0)
                                     Chưa xác nhận
                                 @elseif(($item -> orders -> status) == 1)
-                                    Đã xác nhận
-                                @else
                                     Từ chối
+                                @elseif(($item -> orders -> status) == 2)
+                                    Đã xác nhận<br>
+                                    Chưa thanh toán
+                                @else
+                                    Đã thanh toán
                                 @endif
                             </td>
                             <td>
@@ -116,7 +126,11 @@
                                     @method('PUT')
                                 <button class="btn btn-success btn-lg my-1"><i class="fa-solid fa-square-check"></i></button>
                                 </form>
-
+                                <form method="post" action="{{ route('orders.confirmed', $item -> orders) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-warning btn-lg my-1"><i class="fa-solid fa-square-check"></i></button>
+                                </form>
                                 <form method="post" action="{{ route('orders.denied', $item -> orders) }}">
                                     @csrf
                                     @method('PUT')
@@ -160,7 +174,7 @@
                     @endforeach
                 </tbody>
             </table>
-{{--            {{ $orders->links() }}--}}
+            {{ $details -> links() }}
         </div>
     </div>
 </div>

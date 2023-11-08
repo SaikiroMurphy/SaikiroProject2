@@ -84,21 +84,27 @@
             <ul class="list-group list-group-flush border-top border-success border-4 my-4">
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Số lượng đơn chưa xác nhận</div>
+                        <div class="fw-bold">Số lượng đơn Chưa xác nhận</div>
                     </div>
                     <span class="fs-1">{{ $unConf }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Số lượng đơn đã xác nhận</div>
+                        <div class="fw-bold">Số lượng đơn Từ chối</div>
+                    </div>
+                    <span class="fs-1">{{ $denied }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Số lượng đơn Xác nhận/Chưa thanh toán</div>
                     </div>
                     <span class="fs-1">{{ $confirm }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start mt-4">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Số lượng đơn đã từ chối</div>
+                        <div class="fw-bold">Số lượng đơn Đã thanh toán</div>
                     </div>
-                    <span class="fs-1">{{ $denied }}</span>
+                    <span class="fs-1">{{ $accept }}</span>
                 </li>
             </ul>
         </div>

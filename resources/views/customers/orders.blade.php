@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input placeholder="Select date" class="form-control" type="date" name="date" id="date" min="{{ $datenow }}" placeholder="Ngày đặt sân" required>
-                                    <label for="Date" class="form-label">Ngày đặt sân</label>
+                                    <label for="date" class="form-label">Ngày đặt sân</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating mb-3">
@@ -192,6 +192,20 @@
                                 </div>
                                 <div class="form-floating mb-3" id="price">
                                 </div>
+                                <div class="form-floating mb-3" id="payment">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="payment" id="cod" value=1 checked>
+                                        <label class="form-check-label" for="cod">
+                                            COD
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="payment" id="banking" value=2>
+                                        <label class="form-check-label" for="banking">
+                                            Chuyển khoản
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
@@ -203,7 +217,7 @@
                                         @endforeach
                                     </select>
                                     <label for="types">Loại sân</label>
-                                    <div class="invalid-feedback">Ô này không được để trống</div>
+{{--                                    <div class="invalid-feedback">Ô này không được để trống</div>--}}
                                 </div>
 {{--                                <div class="form-floating mb-3">--}}
 {{--                                    <select class="form-select" name="fields" id="fields" required>--}}
@@ -222,6 +236,10 @@
                                 <div class="form-floating my-3" id="desc">
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
+                            </div>
+                            <div class="form-floating mb-3" id="account">
+                                <input class="form-control" type="text" id="account" value="MB Bank - xxxxxxxxxxxx" readonly>
+                                <label for="account" class="form-label">Hình thức thanh toán</label>
                             </div>
                             <button type="submit" class="btn btn-outline-success" id="dmm">Đặt sân</button>
                         </div>
@@ -280,7 +298,8 @@
                         if (data == '') {
                             $("#dmm").show();
                         } else {
-                            alert('Trùng thời gian với tk khác r tk loz.');
+                            alert('Khung thời gian này đã được chọn.\n' +
+                                'Vui lòng chọn khung thời gian khác.');
                             $("#dmm").hide();
                         }
                     }
@@ -291,6 +310,20 @@
     function selectFunc(){
 
     }
+</script>
+<script>
+    $('#account').hide();
+    $(document).ready(function () {
+        $('input[name="payment"]').on('change', function () {
+            var payment = $('input[name="payment"]:checked').val();
+            // alert(payment);
+            if(payment == 2){
+                $('#account').show();
+            } else {
+                $('#account').hide();
+            }
+        });
+    });
 </script>
 </body>
 </html>

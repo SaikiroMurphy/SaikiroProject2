@@ -26,9 +26,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $details = OrderDetail::all();
-        $datenow = Carbon::now()->format('d/m/y');
-        $now = Carbon::now()->format('H:i:s');
+        $details = OrderDetail::simplePaginate(5);
+//        $datenow = Carbon::now()->format('d/m/y');
+//        $now = Carbon::now()->format('H:i:s');
 //        dd($datenow);
 //        dd()
         return view('dashboard.orders', [
@@ -78,6 +78,7 @@ class OrderController extends Controller
         $array = Arr::add($array, 'customer_id', $customers);
         $array = Arr::add($array, 'order_note', $request -> order_note);
         $array = Arr::add($array, 'status', 0);
+        $array = Arr::add($array, 'payment', $request -> payment);
         Order::create($array);
 
         // Đẩy order_details lên database
@@ -90,7 +91,7 @@ class OrderController extends Controller
 
         OrderDetail::create($array2);
 
-        return Redirect::route('customers.index');
+        return Redirect::route('customers.history');
     }
 
     /**
@@ -131,7 +132,16 @@ class OrderController extends Controller
     {
         // Cập nhật trạng thái đơn hàng
         $array = [];
-        $array = Arr::add($array, 'status', 1);
+        $array = Arr::add($array, 'status', 3);
+        $order->update($array);
+        return Redirect::route('dashboard.orders');
+    }
+
+    public function confirmOrder(Order $order)
+    {
+        // Cập nhật trạng thái đơn hàng
+        $array = [];
+        $array = Arr::add($array, 'status', 2);
         $order->update($array);
         return Redirect::route('dashboard.orders');
     }
@@ -140,7 +150,7 @@ class OrderController extends Controller
     {
         // Cập nhật trạng thái đơn hàng
         $array = [];
-        $array = Arr::add($array, 'status', 2);
+        $array = Arr::add($array, 'status', 1);
         $order->update($array);
         return Redirect::route('dashboard.orders');
     }

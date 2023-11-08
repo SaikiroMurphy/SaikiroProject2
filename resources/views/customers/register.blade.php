@@ -62,7 +62,7 @@
                         <div class="d-flex justify-content-center mt-2"><p
                                 class="alert alert-danger col-3">{{ $message }}</p></div>
                         @enderror
-                        <a href="{{ route('customers.login') }}" class="btn btn-outlinex-warning mt-3">Quay lại</a>
+                        <a href="{{ route('customers.login') }}" class="btn btn-outline-warning mt-3">Quay lại</a>
                         <button class="btn btn-outline-warning mt-3">Đăng ký</button>
                     </form>
                 </div>

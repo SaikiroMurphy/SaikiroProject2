@@ -99,7 +99,7 @@
 {{--                    <a class="btn btn-success btn-lg my-2" href="{{ route('fields.create') }}"><i class="fa-regular fa-square-plus fa-lg fa-bounce"></i></a>--}}
                     <th scope="col">Loại sân</th>
                     <th scope="col">Số lượng sân</th>
-                    <th scope="col">Đơn giá</th>
+                    <th scope="col">Đơn giá/h</th>
 {{--                    <th scope="col">Tuỳ chọn</th>--}}
                 </tr>
                 </thead>

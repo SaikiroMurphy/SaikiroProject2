@@ -26,13 +26,16 @@ class AdminController extends Controller
     public function dashboard()
     {
         $unConf = Order::where('status', '=', 0)->count();
-        $confirm = Order::where('status', '=', 1)->count();
-        $denied = Order::where('status', '=', 2)->count();
+        $denied = Order::where('status', '=', 1)->count();
+        $confirm = Order::where('status', '=', 2)->count();
+        $accept = Order::where('status', '=', 3)->count();
 
         return view('dashboard.index', [
             'unConf' => $unConf,
             'confirm' => $confirm,
             'denied' => $denied,
+            'accept' => $accept,
+
         ]);
     }
 

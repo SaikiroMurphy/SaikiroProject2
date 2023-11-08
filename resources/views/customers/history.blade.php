@@ -155,30 +155,38 @@
                                 <th scope="col">ID đơn</th>
                                 <th scope="col">Sân</th>
                                 <th scope="col">Thời gian</th>
-                                <th scope="col">Khách hàng</th>
 {{--                                <th scope="col">Người quản lý</th>--}}
                                 <th scope="col">Giá</th>
                                 <th scope="col">Ghi chú</th>
+                                <th scope="col">Hình thức thanh toán</th>
                                 <th scope="col">Trạng thái</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($details as $item)
+                            @foreach($details -> reverse() as $item)
                                 <tr>
                                     <td>{{ $item -> orders -> id }}</td>
                                     <td>{{ $item -> fields -> name }}</td>
                                     <td>{{ $item -> date }}<br>
                                         {{ $item -> times -> timeStart }} - {{ $item -> times -> timeEnd }}</td>
-                                    <td>{{ $item -> orders -> customers -> name }}</td>
 {{--                                    <td>{{ $item -> admins -> name }}</td>--}}
                                     <td>{{ number_format($item -> fields -> types -> price, 0, '.', ',') }}đ</td>
                                     <td>{{ $item -> orders -> order_note }}</td>
+                                    <td>@if(($item -> orders -> payment) == 1)
+                                            COD
+                                        @else
+                                            Chuyển khoản
+                                        @endif
+                                    </td>
                                     <td>@if(($item -> orders -> status) == 0)
                                             Chưa xác nhận
                                         @elseif(($item -> orders -> status) == 1)
-                                            Đã xác nhận
-                                        @else
                                             Từ chối
+                                        @elseif(($item -> orders -> status) == 2)
+                                            Đã xác nhận<br>
+                                            Chưa thanh toán
+                                        @else
+                                            Đã thanh toán
                                         @endif
                                     </td>
                                 </tr>

@@ -16,7 +16,7 @@ class TimeController extends Controller
     public function index()
     {
         //
-        $times = Time::simplePaginate(12);
+        $times = Time::simplePaginate(10);
         return view('times.index', [
             'times' => $times,
         ]);

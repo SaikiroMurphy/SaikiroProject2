@@ -13,7 +13,7 @@ class Order extends Model
     const CREATED_AT = null;
     const UPDATED_AT = null;
     protected $table = 'orders';
-    protected $fillable = ['admin_id', 'customer_id', 'order_note', 'status'];
+    protected $fillable = ['admin_id', 'customer_id', 'order_note', 'status', 'payment'];
 
     public function admins() {
         return $this->belongsTo(Admin::class, 'admin_id', 'id');

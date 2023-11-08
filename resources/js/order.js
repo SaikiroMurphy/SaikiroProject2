@@ -29,7 +29,7 @@ $(document).ready(function () {
                     if (data) {
                         $('#price').empty();
                         $.each(data, function (key, types) {
-                            $('#price').append('<input class="form-control" type="text" id="prices" value="'+ types.price + 'đ" readonly>\n' +
+                            $('#price').append('<input class="form-control" type="text" id="prices" value="' + types.price + 'đ" readonly>\n' +
                                 '<label for="prices" class="form-label">Giá</label>\n');
                         });
                     } else {
@@ -60,12 +60,13 @@ $(document).ready(function () {
                         $('#desc').empty();
                         $.each(data, function (key, field) {
                             $('#img').append('<img src="http://localhost/SaikiroProject2/public/storage/dashboard/img/' + field.image + '" id="output" width="500">');
-                            $('#desc').append('<input class="form-control" type="text" id="des" value="'+ field.description + '" readonly>\n' +
+                            $('#desc').append('<input class="form-control" type="text" id="des" value="' + field.description + '" readonly>\n' +
                                 '<label for="des" class="form-label">Mô tả</label>\n');
                         });
 
                     } else {
                         $('#img').empty();
+                        $('#desc').empty();
                     }
                 }
             });

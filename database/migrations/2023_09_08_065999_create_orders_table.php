@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers');
             $table->string('order_note')->nullable();
             $table->integer('status');
+            $table->integer('payment');
         });
     }
 

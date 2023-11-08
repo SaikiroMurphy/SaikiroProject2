@@ -60,6 +60,8 @@ Route::middleware('checkLoginAdmin')->prefix('/dashboard')->group(function () {
     Route::get('/field_types', [\App\Http\Controllers\FieldTypeController::class, 'index'])->name('field_types.index');
     Route::get('/times', [\App\Http\Controllers\TimeController::class, 'index'])->name('times.index');
     Route::put('/orders/{order}/accepted', [\App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders.accepted');
+    Route::put('/orders/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirmOrder'])->name('orders.confirmed');
+
     Route::put('/orders/{order}/denied', [\App\Http\Controllers\OrderController::class, 'deniedOrder'])->name('orders.denied');
     Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
