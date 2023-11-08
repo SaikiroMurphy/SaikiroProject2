@@ -71,19 +71,20 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         // Đẩy orders lên database
+        $customers = Session::get('customers')['id'];
+
         $array = [];
+        $array = Arr::add($array, 'admin_id', random_int(1, Admin::count()));
+        $array = Arr::add($array, 'customer_id', $customers);
         $array = Arr::add($array, 'order_note', $request -> order_note);
         $array = Arr::add($array, 'status', 0);
         $array = Arr::add($array, 'date', $request -> date);
         Order::create($array);
 
         // Đẩy order_details lên database
-        $customers = Session::get('customers')['id'];
         $orders = Order::max('id');
         $array2 =[];
         $array2 = Arr::add($array2, 'order_id', $orders);
-        $array2 = Arr::add($array2, 'admin_id', random_int(1, Admin::count()));
-        $array2 = Arr::add($array2, 'customer_id', $customers);
         $array2 = Arr::add($array2, 'field_id', $request -> fields);
         $array2 = Arr::add($array2, 'time_id', $request -> times);
         OrderDetail::create($array2);
@@ -184,7 +185,18 @@ class OrderController extends Controller
     }
 
     public function checkTime(\Illuminate\Http\Request $request) {
-        $details = OrderDetail::all();
+        $field = $request -> field;
+//        $date = $request -> date;
+        $time = $request -> time;
+        $details = OrderDetail::where('field_id', '=', $field)
+            ->where('time_id', '=', $time)
+//            ->where('date')
+            ->get();
+//        dd($details);
         return response()->json($details);
     }
 }
+
+//where('field_id', '=', $field)
+//    -> with('orders') -> where('date', '=', $date)
+//    -> where('time_id', '=', $time)

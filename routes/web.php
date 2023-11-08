@@ -37,7 +37,7 @@ Route::middleware('checkLogin')->prefix('/customers')->group(function () {
     Route::post('/details/store', [\App\Http\Controllers\OrderController::class, 'store_details'])->name('details.store');
     Route::get('/orders/getFields/{id}', [\App\Http\Controllers\OrderController::class, 'getFields']);
     Route::get('/orders/getPrices/{id}', [\App\Http\Controllers\OrderController::class, 'getPrices']);
-    Route::get('/orders/checkTime/', [\App\Http\Controllers\OrderController::class, 'checkTime']);
+    Route::get('/orders/checkTime/{field}/{time}', [\App\Http\Controllers\OrderController::class, 'checkTime'])->name('checkTime');
 
 
     Route::get('/orders/getImg/{id}', [\App\Http\Controllers\OrderController::class, 'getImg']);

@@ -59,23 +59,15 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        $customers = Customer::all();
-        foreach ($customers as $item) {
-//            dd($request->email == $item->email);
-            if ($request->email == $item->email) {
-                return Redirect::back();
-            } else {
-                $password = bcrypt($request->password);
-                $array = [];
-                $array = Arr::add($array, 'email', $request->email);
-                $array = Arr::add($array, 'address', $request->address);
-                $array = Arr::add($array, 'phonenumber', $request->phonenumber);
-                $array = Arr::add($array, 'name', $request->name);
-                $array = Arr::add($array, 'password', $password);
-                Customer::create($array);
-                return Redirect::route('customers.login');
-            }
-        }
+        $password = bcrypt($request->password);
+        $array = [];
+        $array = Arr::add($array, 'email', $request->email);
+        $array = Arr::add($array, 'address', $request->address);
+        $array = Arr::add($array, 'phonenumber', $request->phonenumber);
+        $array = Arr::add($array, 'name', $request->name);
+        $array = Arr::add($array, 'password', $password);
+        Customer::create($array);
+        return Redirect::route('customers.login');
     }
 
     /**

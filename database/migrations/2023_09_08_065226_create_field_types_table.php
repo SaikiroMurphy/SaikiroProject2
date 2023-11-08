@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('field_types', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('price');
+            $table->integer('price');
         });
     }
 

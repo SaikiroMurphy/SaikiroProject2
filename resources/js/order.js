@@ -119,41 +119,29 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    $('#times').on('change', function () {
-        var time_id = $(this).val();
-        var field_id = $('#fields').val();
-        var date = $('#date').val();
-        if (time_id) {
-            $.ajax({
-                url: 'orders/checkTime/',
-                type: "GET",
-                data: {"_token": "{{ csrf_token() }}"},
-                dataType: "json",
-                success: function (data) {
-                    if (data) {
+// $(document).ready(function () {
+//     $('#times').on('change', function () {
+//         var time_id = $(this).val();
+//         var field_id = $('#fields').val();
+//         var date = $('#date').val();
+//         let url = "{{ route('search', ['id' => ":idSearch", 'code' => ":code"]) }}";
+//         if (time_id) {
+//             $.ajax({
+//                 url: 'orders/checkTime/' + field_id,
+//                 type: "GET",
+//                 data: {"_token": "{{ csrf_token() }}"},
+//                 dataType: "json",
+//                 success: function (data) {
+//                     if (data) {
+//                         alert('Testing');
+//
+//                     } else {
+//
+//                     }
+//                 }
+//             });
+//         }
+//     });
+// });
 
-                        $.each(data, function (key, details) {
-                            if (field_id == details.field_id){
-                                alert('Testing');
-
-                                $.each(data, function (key, details) {
-                                    if (date == details.orders.date){
-
-                                        $.each(data, function (key, details) {
-                                            if (time_id == details.time_id){
-                                                alert('Đã có người chọn khung thời gian này.')
-                                            }
-                                        })
-                                    }
-                                })
-                            }
-                        })
-                    } else {
-
-                    }
-                }
-            });
-        }
-    });
-});
+// + field_id +'/' + date + '/' + time_id + '/'

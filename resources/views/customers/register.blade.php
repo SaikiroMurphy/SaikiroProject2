@@ -9,57 +9,86 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     />
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
-        rel="stylesheet"
-    />
     <script src="https://kit.fontawesome.com/dfb2727f7d.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../../resources/Images/ava-web.png">
     <title>Đăng ký - SugmaStadium</title>
-    <style>
-        #intro {
-            background-image: url("https://m.media-amazon.com/images/I/61wbDovWcpL.jpg");
-            height: 100vh;
-            background-size: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="../../resources/css/customer.css">
 </head>
 <body>
-<div id="intro" class="bg-image">
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+<div class="intro">
+    <div style="background-color: rgba(0, 0, 0, 0.7);">
         <div class="container text-center">
-            <div class="row d-flex align-items-center justify-content-center" style="height: 750px">
-                <div class="col align-self-center">
+            <div class="row" style="height: 1000px">
+                <div class="col align-self-center" style="background-color:#05b50b">
 
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    {{--                    @if($errors->any())--}}
+                    {{--                        <div class="alert alert-danger">--}}
+                    {{--                            <ul>--}}
+                    {{--                                @foreach($errors->all() as $error)--}}
+                    {{--                                    <li>{{ $error }}</li>--}}
+                    {{--                                @endforeach--}}
+                    {{--                            </ul>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endif--}}
 
-                    <form class=" border border-warning bg-success py-5" method="post" action="{{ route('customers.store') }}" style="color: black" novalidate>
+                    <form class="py-3" method="post"
+                          action="{{ route('customers.store') }}" novalidate>
                         <label style="font-size: 50px">SugmaStadium</label><br>
                         @csrf
-                            <p>Email:</p><input type="email" name="email"><br>
-{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
-                            <p>Địa chỉ:</p><input type="text" name="address"><br>
-{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
-                            <p>Số điện thoại:</p><input type="text" name="phonenumber"><br>
-{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
-                            <p>Họ và tên</p><input type="text" name="name"><br>
-{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
-                            <p>Mật khẩu:</p><input type="password" name="password"><br>
-{{--                            <div class="invalid-feedback">Ô này không được để trống</div>--}}
-                            <a href="{{ route('customers.login') }}" class="btn btn-warning mt-3">Quay lại</a>
-                            <button class="btn btn-warning mt-3">Đăng ký</button>
+                        <p>Email:</p><input type="email" name="email" class="@error('email') is-invalid @enderror"><br>
+                        @error('email')
+                        <div class="d-flex justify-content-center mt-2"><p
+                                class="alert alert-danger col-3">{{ $message }}</p></div>
+                        @enderror
+                        <p>Địa chỉ:</p><input type="text" name="address" class="@error('address') is-invalid @enderror"><br>
+                        @error('address')
+                        <div class="d-flex justify-content-center mt-2"><p
+                                class="alert alert-danger col-3">{{ $message }}</p></div>
+                        @enderror
+                        <p>Số điện thoại:</p><input type="text" name="phonenumber"
+                                                    class="@error('phonenumber') is-invalid @enderror"><br>
+                        @error('phonenumber')
+                        <div class="d-flex justify-content-center mt-2"><p
+                                class="alert alert-danger col-3">{{ $message }}</p></div>
+                        @enderror
+                        <p>Họ và tên</p><input type="text" name="name" class="@error('name') is-invalid @enderror"><br>
+                        @error('name')
+                        <div class="d-flex justify-content-center mt-2"><p
+                                class="alert alert-danger col-3">{{ $message }}</p></div>
+                        @enderror
+                        <p>Mật khẩu:</p><input type="password" name="password"
+                                               class="@error('password') is-invalid @enderror"><br>
+                        @error('password')
+                        <div class="d-flex justify-content-center mt-2"><p
+                                class="alert alert-danger col-3">{{ $message }}</p></div>
+                        @enderror
+                        <a href="{{ route('customers.login') }}" class="btn btn-outlinex-warning mt-3">Quay lại</a>
+                        <button class="btn btn-outline-warning mt-3">Đăng ký</button>
                     </form>
                 </div>
             </div>
         </div>
+        {{--Footer--}}
+        <footer class="d-flex flex-warp justify-content-between align-items-center py-2"
+                style="background-color: #05b50b">
+            <div class="col-md-4 align-items-center text-white ms-3" style="--bs-text-opacity: .75;">© 2023 SugmaStadium
+                Copyright.
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
+                <li class="ms-3" style="font-size: 25px">
+                    <a href="https://twitter.com" class="text-white" style="--bs-text-opacity: .75;"><i
+                            class="fa-brands fa-twitter"></i></a>
+                </li>
+                <li class="ms-3" style="font-size: 25px">
+                    <a href="https://www.facebook.com" class="text-white" style="--bs-text-opacity: .75;"><i
+                            class="fa-brands fa-facebook"></i></a>
+                </li>
+                <li class="ms-3" style="font-size: 25px">
+                    <a href="https://github.com" class="text-white" style="--bs-text-opacity: .75;"><i
+                            class="fa-brands fa-github"></i></a>
+                </li>
+            </ul>
+        </footer>
     </div>
 </div>
 {{--<script src="../../resources/js/validate.js"></script>--}}

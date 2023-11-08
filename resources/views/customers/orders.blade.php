@@ -181,7 +181,7 @@
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <select class="form-select" name="times" id="times" required>
+                                    <select class="form-select" name="times" id="times" onchange="selectFunc()" required>
                                     </select>
                                     <label for="TimeEnd">Khung giờ</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
@@ -258,6 +258,38 @@
         var image = document.getElementById('output');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
+</script>
+<script>
+    $(document).ready(function () {
+        $('#times').on('change', function () {
+            var time_id = $(this).val();
+            var field_id = $('#fields').val();
+            var date = $('#date').val();
+            let url = "{{ route('checkTime', ['field' => ":field_id", 'time' => ":time_id"]) }}";
+            url = url.replace(":field_id", field_id);
+            url = url.replace(":time", time_id);
+
+            if (time_id) {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    {{--data: {"_token": "{{ csrf_token() }}"},--}}
+                    {{--dataType: "json",--}}
+                    success: function (data) {
+                        if (data == '') {
+
+                        } else {
+                            alert('Trùng thời gian với tk khác r tk loz.');
+
+                        }
+                    }
+                });
+            }
+        });
+    });
+    function selectFunc(){
+
+    }
 </script>
 </body>
 </html>
