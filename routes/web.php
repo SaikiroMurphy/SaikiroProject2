@@ -65,6 +65,8 @@ Route::middleware('checkLoginAdmin')->prefix('/dashboard')->group(function () {
     Route::put('/orders/{details}/edit', [\App\Http\Controllers\OrderDetailController::class, 'update'])->name('orders.update');
     Route::get('/orders/checkTime/{field}/{time}/{date}', [\App\Http\Controllers\OrderController::class, 'checkTime2'])->name('checkTime2');
     Route::put('/orders/{order}/denied', [\App\Http\Controllers\OrderController::class, 'deniedOrder'])->name('orders.denied');
+    Route::get('/orders/getTimes2Day/', [\App\Http\Controllers\OrderDetailController::class, 'getTimes2Day']);
+    Route::get('/orders/getTimesNextDay/', [\App\Http\Controllers\OrderDetailController::class, 'getTimesNextDay']);
     Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
     Route::post('/admin/store', [\App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');

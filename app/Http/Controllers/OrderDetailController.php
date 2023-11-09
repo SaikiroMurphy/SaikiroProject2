@@ -90,6 +90,17 @@ class OrderDetailController extends Controller
         ]);
     }
 
+    public function getTimes2Day() {
+        $timenow = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i:s');
+        $times = Time::where('timeStart', '>', $timenow)->get();
+        return response()->json($times);
+    }
+
+    public function getTimesNextDay() {
+        $times = Time::all();
+        return response()->json($times);
+    }
+
     /**
      * Update the specified resource in storage.
      *

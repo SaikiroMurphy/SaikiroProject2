@@ -238,7 +238,7 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3" id="account">
-                                <input class="form-control" type="text" id="account" value="MB Bank - xxxxxxxxxxxx" readonly>
+                                <input class="form-control" type="text" id="account" value="MB Bank - xxxxxxxxxxx" readonly>
                                 <label for="account" class="form-label">Hình thức thanh toán</label>
                             </div>
                             <button type="submit" class="btn btn-outline-success" id="dmm">Đặt sân</button>
