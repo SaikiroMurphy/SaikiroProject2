@@ -11,9 +11,9 @@
     <title>Trang chủ - SugmaStadium</title>
     <link rel="stylesheet" href="../../resources/css/customer.css">
 </head>
-<body>
+<body style="min-height: 100vh; display: flex; flex-direction: column">
 <!-- Navbar -->
-<div class="intro">
+<div class="intro" style="height: 100%">
     <div style="background-color: rgba(0, 0, 0, 0.7);">
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:#05b50b">
             <div class="container-fluid">
@@ -145,10 +145,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row mt-3" style="background-color: #05b50b">
+                    <div class="row mt-5" style="background-color: #05b50b">
                         <b class="text-white" style="font-size: x-large">LỊCH SỬ ĐẶT SÂN</b>
                     </div>
-                    <div class="row" style="background-color: white">
+                    <div class="row mb-5" style="background-color: white">
                         <table>
                             <thead>
                             <tr>
@@ -201,7 +201,7 @@
 
         {{--Footer--}}
         <footer class="d-flex flex-warp justify-content-between align-items-center py-2"
-                style="background-color: #05b50b">
+                style="background-color: #05b50b; margin-top: auto">
             <div class="col-md-4 align-items-center text-white ms-3" style="--bs-text-opacity: .75;">© 2023 SugmaStadium
                 Copyright.
             </div>

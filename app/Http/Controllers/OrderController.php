@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $details = OrderDetail::simplePaginate(5);
+        $details = OrderDetail::with('orders')->simplePaginate(5);
 //        $datenow = Carbon::now()->format('d/m/y');
 //        $now = Carbon::now()->format('H:i:s');
 //        dd($datenow);
@@ -195,7 +195,19 @@ class OrderController extends Controller
         return response()->json($prices);
     }
 
-    public function checkTime(\Illuminate\Http\Request $request) {
+    public function checkTime1(\Illuminate\Http\Request $request) {
+        $field = $request -> field;
+        $date = $request -> date;
+        $time = $request -> time;
+        $details = OrderDetail::where('field_id', '=', $field)
+            ->where('time_id', '=', $time)
+            ->where('date', '=', $date)
+            ->get();
+//        dd($details);
+        return response()->json($details);
+    }
+
+    public function checkTime2(\Illuminate\Http\Request $request) {
         $field = $request -> field;
         $date = $request -> date;
         $time = $request -> time;

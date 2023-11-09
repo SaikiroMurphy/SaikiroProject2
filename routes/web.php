@@ -37,7 +37,7 @@ Route::middleware('checkLogin')->prefix('/customers')->group(function () {
     Route::post('/details/store', [\App\Http\Controllers\OrderController::class, 'store_details'])->name('details.store');
     Route::get('/orders/getFields/{id}', [\App\Http\Controllers\OrderController::class, 'getFields']);
     Route::get('/orders/getPrices/{id}', [\App\Http\Controllers\OrderController::class, 'getPrices']);
-    Route::get('/orders/checkTime/{field}/{time}/{date}', [\App\Http\Controllers\OrderController::class, 'checkTime'])->name('checkTime');
+    Route::get('/orders/checkTime/{field}/{time}/{date}', [\App\Http\Controllers\OrderController::class, 'checkTime1'])->name('checkTime1');
 
 
     Route::get('/orders/getImg/{id}', [\App\Http\Controllers\OrderController::class, 'getImg']);
@@ -61,7 +61,9 @@ Route::middleware('checkLoginAdmin')->prefix('/dashboard')->group(function () {
     Route::get('/times', [\App\Http\Controllers\TimeController::class, 'index'])->name('times.index');
     Route::put('/orders/{order}/accepted', [\App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders.accepted');
     Route::put('/orders/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirmOrder'])->name('orders.confirmed');
-
+    Route::get('/orders/{details}/edit', [\App\Http\Controllers\OrderDetailController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{details}/edit', [\App\Http\Controllers\OrderDetailController::class, 'update'])->name('orders.update');
+    Route::get('/orders/checkTime/{field}/{time}/{date}', [\App\Http\Controllers\OrderController::class, 'checkTime2'])->name('checkTime2');
     Route::put('/orders/{order}/denied', [\App\Http\Controllers\OrderController::class, 'deniedOrder'])->name('orders.denied');
     Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');

@@ -183,7 +183,7 @@
                                 <div class="form-floating mb-3">
                                     <select class="form-select" name="times" id="times" onchange="selectFunc()" required>
                                     </select>
-                                    <label for="TimeEnd">Khung giờ</label>
+                                    <label for="times">Khung giờ</label>
                                     <div class="invalid-feedback">Ô này không được để trống</div>
                                 </div>
                                 <div class="form-floating my-3">
@@ -283,7 +283,7 @@
             var time_id = $(this).val();
             var field_id = $('#fields').val();
             var date = $('#date').val();
-            let url = "{{ route('checkTime', ['field' => ":field_id", 'time' => ":time_id", 'date' => ":date"]) }}";
+            let url = "{{ route('checkTime1', ['field' => ":field_id", 'time' => ":time_id", 'date' => ":date"]) }}";
             url = url.replace(":field_id", field_id);
             url = url.replace(":time", time_id);
             url = url.replace(":date", date);

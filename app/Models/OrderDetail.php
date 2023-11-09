@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class OrderDetail extends Model
 {
@@ -24,5 +25,12 @@ class OrderDetail extends Model
 
     public function times() {
         return $this->belongsTo(Time::class, 'time_id', 'id');
+    }
+
+    public function edit() {
+        $details = DB::table('order_details')
+            ->where('id', $this->id)
+            ->get();
+        return $details;
     }
 }
