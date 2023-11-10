@@ -76,11 +76,12 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#date').on('change', function () {
+        // alert($('#date').val());
         var now = new Date();
-        var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + '0' + now.getDate();
-        var date = $(this).val();
+        var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+        var date = $('#date').val();
         // alert(today);
-        if (date == today) {
+        if (date === today) {
             $.ajax({
                 url: 'orders/getTimes2Day/',
                 type: "GET",
